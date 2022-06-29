@@ -53,6 +53,14 @@ class LinkedList
   end
 
   def contains?(value)
+    count = 0
+    hold_node = @head
+    until value == hold_node.value || count > self.size
+      hold_node = hold_node.next_node unless hold_node.next_node == nil
+      count += 1
+    end
+    return true if hold_node.value == value
+    return false if count > self.size
   end
 
   def find(value)
@@ -77,6 +85,4 @@ linked_list.append(82)
 linked_list.prepend(10)
 puts linked_list.at(3)
 linked_list.pop
-puts linked_list.size
-puts linked_list.at(2)
 
