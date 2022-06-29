@@ -101,6 +101,25 @@ class LinkedList
     pre_hold_node.next_node = Node.new(value, hold_node)
     @total_nodes += 1
   end
+
+  def remove_at(index)
+    count = 0
+    pre_hold_node = @head
+    until count == index - 1
+      pre_hold_node = pre_hold_node.next_node
+      count += 1
+    end
+    count_2 = 0
+    mid_hold_node = @head
+    until count_2 == index
+      mid_hold_node = mid_hold_node.next_node
+      count_2 += 1
+    end
+    @total_nodes -= 1
+    post_hold_node = mid_hold_node.next_node
+    pre_hold_node.next_node = post_hold_node
+    mid_hold_node.next_node = nil
+  end
 end
 
 class Node
@@ -126,5 +145,8 @@ linked_list.prepend(10)
 linked_list.insert_at(100, 2)
 linked_list.insert_at(50, 1)
 linked_list.insert_at(33, 5)
+linked_list.to_s
+linked_list.remove_at(3) 
+linked_list.remove_at(2) 
 linked_list.to_s
 
