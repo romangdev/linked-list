@@ -75,6 +75,14 @@ class LinkedList
   end
 
   def to_s
+    count = 0
+    hold_node = @head
+    until count >= self.size
+      print "( #{hold_node.value} ) --> "
+      hold_node = hold_node.next_node
+      print "nil\n" if hold_node == nil
+      count += 1
+    end
   end
 end
 
@@ -93,4 +101,5 @@ linked_list.append(82)
 linked_list.prepend(10)
 puts linked_list.at(3)
 puts linked_list.find(4)
+linked_list.to_s
 
