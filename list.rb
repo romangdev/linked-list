@@ -84,6 +84,23 @@ class LinkedList
       count += 1
     end
   end
+
+  def insert_at(value, index)
+    count = 0
+    hold_node = @head
+    until count == index
+      hold_node = hold_node.next_node
+      count += 1
+    end
+    count_2 = 0
+    pre_hold_node = @head
+    until count_2 == count - 1
+      pre_hold_node = pre_hold_node.next_node
+      count_2 += 1
+    end
+    pre_hold_node.next_node = Node.new(value, hold_node)
+    @total_nodes += 1
+  end
 end
 
 class Node
@@ -99,7 +116,15 @@ linked_list = LinkedList.new(5)
 linked_list.append(8)
 linked_list.append(82)
 linked_list.prepend(10)
-puts linked_list.at(3)
-puts linked_list.find(4)
+# linked_list.prepend(130)
+# linked_list.append(29)
+# linked_list.append(34)
+# linked_list.append(12)
+# linked_list.prepend(35)
+# puts linked_list.at(3)
+# puts linked_list.find(8)
+linked_list.insert_at(100, 2)
+linked_list.insert_at(50, 1)
+linked_list.insert_at(33, 5)
 linked_list.to_s
 
