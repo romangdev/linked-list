@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Representing linked list objects
 class LinkedList
   attr_accessor :head, :total_nodes
 
@@ -22,28 +25,29 @@ class LinkedList
   end
 
   def size
-    return @total_nodes
+    @total_nodes
   end
 
   def head
-    return @head.value
+    @head.value
   end
 
-  def tail 
-    return @tail.value
+  def tail
+    @tail.value
   end
 
   def at(index)
     count = 0
-    return "out of range" if index < 0
+    return 'out of range' if index.negative?
     return @head.value if count == index
+
     @loop_tmp = @head.next_node
     count += 1
     until count == index
       @loop_tmp = @loop_tmp.next_node
       count += 1
     end
-    return @loop_tmp.value
+    @loop_tmp.value
   end
 
   def pop
@@ -55,32 +59,32 @@ class LinkedList
   def contains?(value)
     count = 0
     hold_node = @head
-    until value == hold_node.value || count > self.size
-      hold_node = hold_node.next_node unless hold_node.next_node == nil
+    until value == hold_node.value || count > size
+      hold_node = hold_node.next_node unless hold_node.next_node.nil?
       count += 1
     end
     return true if hold_node.value == value
-    return false if count > self.size
+    return false if count > size
   end
 
   def find(value)
     count = 0
     hold_node = @head
-    until value == hold_node.value || count > self.size
-      hold_node = hold_node.next_node unless hold_node.next_node == nil
+    until value == hold_node.value || count > size
+      hold_node = hold_node.next_node unless hold_node.next_node.nil?
       count += 1
     end
     return count if hold_node.value == value
-    return nil if count > self.size
+    return nil if count > size
   end
 
   def to_s
     count = 0
     hold_node = @head
-    until count >= self.size
+    until count >= size
       print "( #{hold_node.value} ) --> "
       hold_node = hold_node.next_node
-      print "nil\n" if hold_node == nil
+      print "nil\n" if hold_node.nil?
       count += 1
     end
   end
@@ -92,11 +96,11 @@ class LinkedList
       hold_node = hold_node.next_node
       count += 1
     end
-    count_2 = 0
+    count_two = 0
     pre_hold_node = @head
     until count_2 == count - 1
       pre_hold_node = pre_hold_node.next_node
-      count_2 += 1
+      count_two += 1
     end
     pre_hold_node.next_node = Node.new(value, hold_node)
     @total_nodes += 1
@@ -109,11 +113,11 @@ class LinkedList
       pre_hold_node = pre_hold_node.next_node
       count += 1
     end
-    count_2 = 0
+    count_two = 0
     mid_hold_node = @head
     until count_2 == index
       mid_hold_node = mid_hold_node.next_node
-      count_2 += 1
+      count_two += 1
     end
     @total_nodes -= 1
     post_hold_node = mid_hold_node.next_node
@@ -122,6 +126,7 @@ class LinkedList
   end
 end
 
+# For creating node objects meant to work within linked lists
 class Node
   attr_accessor :value, :next_node
 
@@ -130,23 +135,3 @@ class Node
     @next_node = next_node
   end
 end
-
-linked_list = LinkedList.new(5)
-linked_list.append(8)
-linked_list.append(82)
-linked_list.prepend(10)
-# linked_list.prepend(130)
-# linked_list.append(29)
-# linked_list.append(34)
-# linked_list.append(12)
-# linked_list.prepend(35)
-# puts linked_list.at(3)
-# puts linked_list.find(8)
-linked_list.insert_at(100, 2)
-linked_list.insert_at(50, 1)
-linked_list.insert_at(33, 5)
-linked_list.to_s
-linked_list.remove_at(3) 
-linked_list.remove_at(2) 
-linked_list.to_s
-
